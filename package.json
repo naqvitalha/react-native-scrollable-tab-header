@@ -1,6 +1,6 @@
 {
   "name": "react-native-scrollable-tab-header",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Separate tab header component which gives you relevant callbacks to build your own tab implementation",
   "main": "index.js",
   "dependencies": {},
@@ -10,12 +10,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://www.github.com/naqvitalha/ReactEssentials/react-native-scrollable-tab-header"
+    "url": "https://www.github.com/naqvitalha/react-native-scrollable-tab-header"
   },
   "author": "naqvitalha <naqvitalha@gmail.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Flipkart/ReactEssentials/issues"
   },
-  "homepage": "https://www.github.com/naqvitalha/ReactEssentials/react-native-scrollable-tab-header"
+  "homepage": "https://www.github.com/naqvitalha/react-native-scrollable-tab-header"
 }
