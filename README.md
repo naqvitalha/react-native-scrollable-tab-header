@@ -2,6 +2,8 @@
 Separate tab header component which gives you relevant callbacks to build your own tab implementation. Very smooth with no frame drops.
 
 ```js
+import ScrollableTabs from "react-native-scrollable-tab-header";
+
 <ScrollableTabs inactiveTextColor="white"
                 backgroundColor={Colors.signatureBlue}
                 underlineStyle={{backgroundColor:'gold'}}
