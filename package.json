@@ -1,6 +1,6 @@
 {
   "name": "react-native-scrollable-tab-header",
-  "version": "0.1.8",
+  "version": "0.2.0",
   "description": "Separate tab header component which gives you relevant callbacks to build your own tab implementation",
   "main": "index.js",
   "dependencies": {},
