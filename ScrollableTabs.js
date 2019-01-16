@@ -154,9 +154,9 @@ class ScrollableTabs extends React.Component{
                 totalDim = totalDim + this._tabsMeasurements[i].width;
             }
             if (totalDim < WINDOW_WIDTH) {
-                let widthForEach = WINDOW_WIDTH / numberOfTabs;
+                const widthForEach = WINDOW_WIDTH / numberOfTabs;
                 for (let i = 0; i < this._tabsMeasurements.length; i++) {
-                    if(i==0){
+                    if(i === 0){
                         this._tabsMeasurements[i].left = 0;
                         this._tabsMeasurements[i].right = widthForEach;
                     } else {
