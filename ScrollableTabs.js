@@ -147,16 +147,23 @@ class ScrollableTabs extends React.Component{
     measureTab(page, event) {
         const { x, width, height } = event.nativeEvent.layout;
         this._tabsMeasurements[page] = { left: x, right: x + width, width, height };
-        if (this._tabsMeasurements.length === this.props.tabs.length) {
+        const numberOfTabs = this.props.tabs.length;
+        if (this._tabsMeasurements.length === numberOfTabs) {
             let totalDim = 0;
             for (let i = 0; i < this._tabsMeasurements.length; i++) {
                 totalDim = totalDim + this._tabsMeasurements[i].width;
             }
             if (totalDim < WINDOW_WIDTH) {
-                const diffForEach = (WINDOW_WIDTH - totalDim) / this.props.tabs.length;;
+                let widthForEach = WINDOW_WIDTH / numberOfTabs;
                 for (let i = 0; i < this._tabsMeasurements.length; i++) {
-                    this._tabsMeasurements[i].width = this._tabsMeasurements[i].width + diffForEach;
-                    this._tabsMeasurements[i].right = this._tabsMeasurements[i].right + diffForEach;
+                    if(i==0){
+                        this._tabsMeasurements[i].left = 0;
+                        this._tabsMeasurements[i].right = widthForEach;
+                    } else {
+                        this._tabsMeasurements[i].left = this._tabsMeasurements[i-1].width;
+                        this._tabsMeasurements[i].right = this._tabsMeasurements[i].left + widthForEach;
+                    }
+                    this._tabsMeasurements[i].width = widthForEach;
                 }
             }
         }
