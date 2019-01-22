@@ -6,8 +6,7 @@
 // TypeScript Version: 2.8
 
 import * as React from 'react';
-import { Animated, ScrollViewProps, ViewStyle, TextStyle, StyleProp, RegisteredStyle } from 'react-native';
-import { ImageStyle } from 'react-native-web';
+import { Animated, ScrollViewProps, ViewStyle, TextStyle, StyleProp, RegisteredStyle, ImageStyle } from 'react-native';
 
 export interface ScrollableTabViewProperties extends React.Props<ScrollableTabView> {
     /**
@@ -120,7 +119,7 @@ export interface ChangeTabProperties {
     from: number;
 }
 
-export default class ScrollableTabView extends React.Component<ScrollableTabViewProperties> {
+export class ScrollableTabView extends React.Component<ScrollableTabViewProperties> {
 }
 
 // Each top-level child component should have a tabLabel prop
@@ -151,5 +150,5 @@ export interface ScrollableTabBarProps extends DefaultTabBarProps {
     tabsContainerStyle?: ViewStyle;
 }
 
-export class ScrollableTabBar extends React.Component<TabBarProps<ScrollableTabBarProps>> {
+export default class ScrollableTabBar extends React.Component<TabBarProps<ScrollableTabBarProps>> {
 }
