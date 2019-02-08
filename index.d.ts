@@ -15,7 +15,7 @@ export interface ScrollableTabViewProperties extends React.Props<ScrollableTabVi
      * and should implement setAnimationValue to be able to animate itself along with the tab content.
      * You can manually pass the props to the TabBar component.
      */
-    renderTabBar?: ((props: TabBarProps) => JSX.Element) | false;
+    renderTabBar?: ((props: TabBarProps) => React.ReactNode) | false;
 
     /**
      * Defaults to "top".
@@ -104,7 +104,7 @@ export interface ScrollableTabViewProperties extends React.Props<ScrollableTabVi
 
 export type TabBarProps<T = {}> = T & {
     goToPage?: (pageNumber: number) => void;
-    tabs?: JSX.Element[];
+    tabs?: React.ReactNode[];
     activeTab?: number;
     scrollValue?: Animated.Value;
     containerWidth?: number;
@@ -114,7 +114,7 @@ export interface ChangeTabProperties {
     // currentPage
     i: number;
     // currentPage object
-    ref: JSX.Element;
+    ref: React.ReactNode;
     // previousPage
     from: number;
 }
@@ -139,7 +139,7 @@ export interface DefaultTabBarProps {
 }
 
 export type RenderTabProperties =
-    (name: string, pageIndex: number, isTabActive: boolean, goToPage: (pageNumber: number) => void) => JSX.Element;
+    (name: string, pageIndex: number, isTabActive: boolean, goToPage: (pageNumber: number) => void) => React.ReactNode;
 
 export class DefaultTabBar extends React.Component<TabBarProps<DefaultTabBarProps>> {
 }
@@ -151,4 +151,5 @@ export interface ScrollableTabBarProps extends DefaultTabBarProps {
 }
 
 export default class ScrollableTabBar extends React.Component<TabBarProps<ScrollableTabBarProps>> {
+    updateOffsetExternal(value: number, width: number): void;
 }
