@@ -280,12 +280,13 @@ const styles = StyleSheet.create({
         paddingRight: 20,
     },
     container: {
-        height: 50,
+        height: 54,
         borderWidth: 1,
         borderTopWidth: 0,
         borderLeftWidth: 0,
         borderRightWidth: 0,
         borderColor: '#ccc',
+        width: WINDOW_WIDTH
     },
     tabs: {
         flexDirection: 'row',
