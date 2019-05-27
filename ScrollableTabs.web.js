@@ -1,4 +1,3 @@
-import createReactClass from 'create-react-class';
 import React from 'react';
 import {
     View,
@@ -12,65 +11,35 @@ import Tabs from './Tabs'
 
 const WINDOW_WIDTH = Dimensions.get('window').width;
 
-const ScrollableTabs = createReactClass({
-    // propTypes: {
-    //     goToPage: React.PropTypes.func,
-    //     activeTab: React.PropTypes.number,
-    //     tabs: React.PropTypes.array,
-    //     backgroundColor: React.PropTypes.string,
-    //     activeTextColor: React.PropTypes.string,
-    //     inactiveTextColor: React.PropTypes.string,
-    //     scrollOffset: React.PropTypes.number,
-    //     style: React.PropTypes.object,
-    //     tabStyle: React.PropTypes.object,
-    //     tabsContainerStyle: React.PropTypes.object,
-    //     textStyle: Text.propTypes.style,
-    //     renderTab: React.PropTypes.func,
-    //     underlineStyle: React.PropTypes.object,
-    //     onScroll: React.PropTypes.func,
-    // },
-
-    getDefaultProps() {
-        return {
-            scrollOffset: 52,
-            activeTextColor: 'navy',
-            inactiveTextColor: 'black',
-            backgroundColor: null,
-            style: {},
-            tabStyle: {},
-            tabsContainerStyle: {},
-            underlineStyle: {},
-            activeTab: 0
-        };
-    },
-
-    getInitialState() {
+export default class ScrollableTabs extends React.Component {
+    constructor(props) {
+        super(props);
         this._tabsMeasurements = [];
         this.scrollValue = new Animated.Value(0);
-        return {
+        this.state = {
             _leftTabUnderline: new Animated.Value(0),
             _widthTabUnderline: new Animated.Value(0),
             _containerWidth: null,
             activeTab: 0
         };
-    },
+    }
 
     componentDidMount() {
         this.scrollValue.addListener(this._updateView);
-    },
+    }
 
     componentWillMount() {
         if (this.props.activeTab !== this.state.activeTab) {
             this.scrollValue.setValue(this.props.activeTab)
             this.setState({activeTab: this.props.activeTab});
         }
-    },
+    }
 
-    updateOffsetExternal(currentOffset, pageWidth) {
+    updateOffsetExternal = (currentOffset, pageWidth) => {
         this.scrollValue.setValue(currentOffset / pageWidth);
-    },
+    }
 
-    _updateView(offset) {
+    _updateView = (offset) => {
         const position = Math.floor(offset.value);
         const pageOffset = offset.value % 1;
         const tabCount = this.props.tabs.length;
@@ -94,16 +63,16 @@ const ScrollableTabs = createReactClass({
         if (activePosition !== this.state.activeTab) {
             this.setState({activeTab: activePosition});
         }
-    },
+    }
 
-    necessarilyMeasurementsCompleted(position, isLastTab) {
+    necessarilyMeasurementsCompleted = (position, isLastTab) => {
         return this._tabsMeasurements[position] &&
             (isLastTab || this._tabsMeasurements[position + 1]) &&
             this._tabContainerMeasurements &&
             this._containerMeasurements;
-    },
+    }
 
-    updateTabPanel(position, pageOffset) {
+    updateTabPanel = (position, pageOffset) => {
         const containerWidth = this._containerMeasurements.width;
         const tabWidth = this._tabsMeasurements[position].width;
         const nextTabMeasurements = this._tabsMeasurements[position + 1];
@@ -124,9 +93,9 @@ const ScrollableTabs = createReactClass({
             this._scrollView && this._scrollView.scrollTo({x: newScrollX, y: 0, animated: false,});
         }
 
-    },
+    }
 
-    updateTabUnderline(position, pageOffset, tabCount) {
+    updateTabUnderline = (position, pageOffset, tabCount) => {
         const lineLeft = this._tabsMeasurements[position].left;
         const lineRight = this._tabsMeasurements[position].right;
 
@@ -146,17 +115,17 @@ const ScrollableTabs = createReactClass({
             this.state._leftTabUnderline.setValue(newLineWidth / 2 + lineLeft);
             this.state._widthTabUnderline.setValue(newLineWidth);
         }
-    },
+    }
 
-    measureTab(page, event) {
+    measureTab = (page, event) => {
         const {x, width, height,} = event.nativeEvent.layout;
         this._tabsMeasurements[page] = {left: x, right: x + width, width, height,};
         this._updateView({value: this.scrollValue._value,});
-    },
+    }
 
     shouldComponentUpdate(newProps, newState) {
         return newState.activeTab !== this.state.activeTab;
-    },
+    }
 
     render() {
         const tabUnderlineStyle = {
@@ -215,16 +184,16 @@ const ScrollableTabs = createReactClass({
             </ScrollView>
             </View>
         </View>;
-    },
+    }
 
     componentWillReceiveProps(nextProps) {
         // If the tabs change, force the width of the tabs container to be recalculated
         if (JSON.stringify(this.props.tabs) !== JSON.stringify(nextProps.tabs) && this.state._containerWidth) {
             this.setState({_containerWidth: null,});
         }
-    },
+    }
 
-    onTabContainerLayout(e) {
+    onTabContainerLayout = (e) => {
         this._tabContainerMeasurements = e.nativeEvent.layout;
         let width = this._tabContainerMeasurements.width;
         if (width < WINDOW_WIDTH) {
@@ -232,15 +201,42 @@ const ScrollableTabs = createReactClass({
         }
         this.setState({_containerWidth: width,});
         this._updateView({value: this.scrollValue._value,});
-    },
+    }
 
-    onContainerLayout(e) {
+    onContainerLayout =(e) => {
         this._containerMeasurements = e.nativeEvent.layout;
         this._updateView({value: this.scrollValue._value,});
-    },
-});
+    }
+};
 
-module.exports = ScrollableTabs;
+ScrollableTabs.defaultPropTypes = {
+    scrollOffset: 52,
+    activeTextColor: 'navy',
+    inactiveTextColor: 'black',
+    backgroundColor: null,
+    style: {},
+    tabStyle: {},
+    tabsContainerStyle: {},
+    underlineStyle: {},
+    activeTab: 0
+}
+
+ScrollableTabs.propTypes = {
+    goToPage: PropTypes.func,
+    activeTab: PropTypes.number,
+    tabs: PropTypes.array,
+    backgroundColor: PropTypes.string,
+    activeTextColor: PropTypes.string,
+    inactiveTextColor: PropTypes.string,
+    scrollOffset: PropTypes.number,
+    style: PropTypes.object,
+    tabStyle: PropTypes.object,
+    tabsContainerStyle: PropTypes.object,
+    textStyle: Text.propTypes.style,
+    renderTab: PropTypes.func,
+    underlineStyle: PropTypes.object,
+    onScroll: PropTypes.func,
+};
 
 const styles = StyleSheet.create({
     tab: {
