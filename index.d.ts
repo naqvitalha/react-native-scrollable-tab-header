@@ -135,7 +135,7 @@ export interface DefaultTabBarProps {
     textStyle?: RegisteredStyle<ViewStyle | TextStyle | ImageStyle>;
     tabStyle?: RegisteredStyle<ViewStyle | TextStyle | ImageStyle>;
     renderTab?: RenderTabProperties;
-    underlineStyle?: RegisteredStyle<ViewStyle | TextStyle | ImageStyle>;
+    underlineStyle?: StyleProp<ViewStyle | TextStyle | ImageStyle>;
     contentContainerStyle?: RegisteredStyle<ViewStyle | TextStyle | ImageStyle>;
 }
 
@@ -147,7 +147,7 @@ export class DefaultTabBar extends React.Component<TabBarProps<DefaultTabBarProp
 
 export interface ScrollableTabBarProps extends DefaultTabBarProps {
     scrollOffset?: number;
-    style: RegisteredStyle<ViewStyle | TextStyle | ImageStyle>;
+    style: StyleProp<ViewStyle | TextStyle | ImageStyle>;
     tabsContainerStyle?: ViewStyle;
 }
 
