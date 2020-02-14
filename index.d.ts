@@ -132,11 +132,11 @@ export interface DefaultTabBarProps {
     backgroundColor?: string;
     activeTextColor?: string;
     inactiveTextColor?: string;
-    textStyle?: RegisteredStyle<ViewStyle | TextStyle | ImageStyle>;
-    tabStyle?: RegisteredStyle<ViewStyle | TextStyle | ImageStyle>;
+    textStyle?: ViewStyle | TextStyle | ImageStyle;
+    tabStyle?: ViewStyle | TextStyle | ImageStyle;
     renderTab?: RenderTabProperties;
-    underlineStyle?: StyleProp<ViewStyle | TextStyle | ImageStyle>;
-    contentContainerStyle?: RegisteredStyle<ViewStyle | TextStyle | ImageStyle>;
+    underlineStyle?: ViewStyle | TextStyle | ImageStyle;
+    contentContainerStyle?: ViewStyle | TextStyle | ImageStyle;
 }
 
 export type RenderTabProperties =
