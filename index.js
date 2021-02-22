@@ -1,1 +1,2 @@
-module.exports = require('./ScrollableTabs');
+import ScrollableTabs from './ScrollableTabs';
+export default ScrollableTabs;
